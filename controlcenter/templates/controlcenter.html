@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <div class="container-fluid"{# style="border: 1px red dotted;"#}>
+{#        <div class="row">#}
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4>Update My Current Status</h4>
+                </div>
+                <div class="panel-body">
+                    <form id="user_status_form" class="form-inline" action="{% url 'change_status_endpoint' %}">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            {{ form.status }}
+                        </div>
+                    </form>
+                </div>
+            </div>
+{#        </div>#}
+{#        <div class="row">#}
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4>List of employees</h4>
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <form id="controlcenter_form" action="javascript:return;" class="form-inline"
+                              style="margin-bottom: 20px;">
+                            <div class="col-md-4">
+                                <input type="text" id="username_filter" class="form-control" style="width: 200px;" placeholder="Search by name" />
+                            </div>
+                            <div class="col-md-4 col-md-offset-4">
+                                <select name="" id="status_filter" class="form-control" style="width: 200px;">
+                                    <option value="">Filter By Status</option>
+                                    <option value="working">Working</option>
+                                    <option value="vacation">On Vacation</option>
+                                </select>
+                            </div>
+                        </form>
+                    </div>
+                    <div style="margin-top: 70px;">
+                        <table id="users_list_table" data-action="{% url 'users_endpoint' %}" class="table table-bordered table-striped table-hover">
+                            <tbody>
+                                <tr>
+                                    <td>Loading users list...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+{#        </div>#}
+{% endblock %}

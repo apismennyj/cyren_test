@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>MyWorkStatus</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+        {# Styles #}
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <script src="{% static 'css/styles.css' %}"></script>
+
+        {# Scripts #}
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        <script src="{% static 'js/scripts.js' %}"></script>
+        <script src="{% static 'js/jquery.cookie.js' %}"></script>
+    </head>
+
+    <body>
+        <div class="container-fluid">
+            {% if current_user %}
+                <div class="pull-right"><button id="logout_button" class="btn btn-primary" data-href="{% url 'login' %}">Logout</button></div>
+            {% endif %}
+            <div class="row">
+                <div class="text-center">
+                    <h3>
+                        {% if current_user %}
+                            Hello {{ current_user.username }}, you are <span id="current_user_status">{{ current_user_status }}</span>
+                        {% else %}
+                            Welcome to my MyWorkStatus
+                        {% endif %}
+                    </h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    {% block body %}
+                    {% endblock body %}
+                </div>
+            </div>
+        </div>
+    </body>
+
+</html>
